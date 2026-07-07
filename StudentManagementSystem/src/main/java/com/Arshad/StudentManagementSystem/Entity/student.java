@@ -14,6 +14,7 @@ public class student {
     private String email;
     private String department;
 
+    public student(){}
     public student(String name, long id, int age, String email, String department) {
         this.name = name;
         this.id = id;
