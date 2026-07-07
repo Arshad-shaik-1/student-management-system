@@ -1,21 +1,20 @@
-package com.Arshad.StudentManagementSystem.Entity;
+package com.Arshad.StudentManagementSystem.entity;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "Students")
-public class student {
+public class Student {
     private String name;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private int age ;
     private String email;
     private String department;
 
-    public student(){}
-    public student(String name, long id, int age, String email, String department) {
+    public Student(){}
+    public Student(String name,  int age, String email, String department) {
         this.name = name;
         this.id = id;
         this.age = age;
@@ -42,11 +41,11 @@ public class student {
         this.name = name;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
