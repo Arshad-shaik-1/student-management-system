@@ -1,15 +1,14 @@
 package com.Arshad.StudentManagementSystem.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "Students")
-public class student {g
+public class student {
     private String name;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int age ;
     private String email;
