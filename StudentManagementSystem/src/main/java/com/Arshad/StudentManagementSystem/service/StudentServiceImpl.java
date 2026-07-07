@@ -1,5 +1,6 @@
 package com.Arshad.StudentManagementSystem.service;
 
+import com.Arshad.StudentManagementSystem.Exception.StudentNotFoundException;
 import com.Arshad.StudentManagementSystem.entity.Student;
 import com.Arshad.StudentManagementSystem.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,10 @@ public  class StudentServiceImpl implements StudentService {
      return repo.findAll();
     }
     @Override
-    public Optional<Student> getStudent(Long id){
-        return repo.findById(id);
+    public Student getStudent(Long id){
+        return repo.findById(id)
+                .orElseThrow(
+                        () -> new StudentNotFoundException("No Student found with id "+id));
     }
 
     @Override

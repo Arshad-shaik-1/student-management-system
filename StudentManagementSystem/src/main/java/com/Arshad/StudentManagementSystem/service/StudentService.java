@@ -11,7 +11,7 @@ public interface StudentService {
 
     List<Student> getStudents();
 
-    Optional<Student> getStudent(Long id );
+    Student getStudent(Long id );
 
     Student updateStudent(Long id ,Student student);
 
