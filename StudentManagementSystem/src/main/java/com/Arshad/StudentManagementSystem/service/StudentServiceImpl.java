@@ -5,12 +5,13 @@ import com.Arshad.StudentManagementSystem.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public  class StudentServiceImpl implements StudentService {
 
     private final StudentRepository repo;
-    StudentServiceImpl(StudentRepository repo){
+    public StudentServiceImpl(StudentRepository repo){
         this.repo = repo;
     }
 
@@ -22,5 +23,9 @@ public  class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getStudents(){
      return repo.findAll();
+    }
+    @Override
+    public Optional<Student> getStudent(Long id){
+        return repo.findById(id);
     }
 }
