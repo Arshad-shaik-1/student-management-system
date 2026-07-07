@@ -2,6 +2,7 @@ package com.Arshad.StudentManagementSystem.controller;
 
 import com.Arshad.StudentManagementSystem.entity.Student;
 import com.Arshad.StudentManagementSystem.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class StudentController {
         this.service = service;
     }
     @PostMapping
-    public Student addStudent(@RequestBody Student s){
+    public Student addStudent(@Valid  @RequestBody Student s){
         System.out.println("Post in controller");
        return  service.addStudent(s);
     }
@@ -29,7 +30,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable Long id , @RequestBody Student student){
+    public Student updateStudent( @PathVariable Long id , @Valid @RequestBody Student student){
         return service.updateStudent(id , student);
     }
 

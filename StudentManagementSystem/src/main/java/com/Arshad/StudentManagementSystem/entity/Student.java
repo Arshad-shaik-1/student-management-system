@@ -1,16 +1,28 @@
 package com.Arshad.StudentManagementSystem.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Students")
 public class Student {
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Min(value = 16 , message = "Age must be above 15")
     private int age ;
+
+    @NotBlank(message = "Email cannot be blank")
+    @Email(message = "Enter a valid email address")
     private String email;
+
+    @NotBlank(message = "Department cannot be null")
     private String department;
 
     public Student(){}
