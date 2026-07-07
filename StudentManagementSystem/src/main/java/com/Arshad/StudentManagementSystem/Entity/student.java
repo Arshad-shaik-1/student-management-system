@@ -1,13 +1,15 @@
 package com.Arshad.StudentManagementSystem.Entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "Students")
-public class student {
+public class student {g
     private String name;
+    @Id
     private long id;
     private int age ;
     private String email;
