@@ -1,8 +1,11 @@
 package com.Arshad.StudentManagementSystem.service;
 
 import com.Arshad.StudentManagementSystem.Exception.StudentNotFoundException;
+import com.Arshad.StudentManagementSystem.dto.request.StudentRequestDTO;
+import com.Arshad.StudentManagementSystem.dto.response.StudentResponseDTO;
 import com.Arshad.StudentManagementSystem.entity.Student;
 import com.Arshad.StudentManagementSystem.repository.StudentRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +20,24 @@ public  class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student addStudent(Student s) {
+    public StudentResponseDTO addStudent(StudentRequestDTO request) {
         System.out.println("post in service impl");
-        return repo.save(s);
+        Student student = new Student();
+        student.setName(request.getName());
+        student.setDepartment(request.getDepartment());
+        student.setAge(request.getAge());
+        student.setEmail(request.getEmail());
+
+        Student saved = repo.save(student);
+
+        StudentResponseDTO response = new StudentResponseDTO();
+        response.setId(saved.getId());
+        response.setAge(saved.getAge());
+        response.setName(saved.getName());
+        response.setEmail(saved.getEmail());
+        response.setDepartment(saved.getDepartment());
+
+        return response;
     }
     @Override
     public List<Student> getStudents(){

@@ -1,8 +1,12 @@
 package com.Arshad.StudentManagementSystem.controller;
 
+import com.Arshad.StudentManagementSystem.dto.request.StudentRequestDTO;
+import com.Arshad.StudentManagementSystem.dto.response.StudentResponseDTO;
 import com.Arshad.StudentManagementSystem.entity.Student;
 import com.Arshad.StudentManagementSystem.service.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +20,10 @@ public class StudentController {
         this.service = service;
     }
     @PostMapping
-    public Student addStudent(@Valid  @RequestBody Student s){
-        System.out.println("Post in controller");
-       return  service.addStudent(s);
+    public ResponseEntity<StudentResponseDTO> addStudent(
+            @Valid @RequestBody StudentRequestDTO request){
+        StudentResponseDTO response = service.addStudent(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     @GetMapping
     public List<Student> getStudents(){

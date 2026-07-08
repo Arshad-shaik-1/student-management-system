@@ -1,13 +1,16 @@
 package com.Arshad.StudentManagementSystem.service;
 
+import com.Arshad.StudentManagementSystem.dto.request.StudentRequestDTO;
+import com.Arshad.StudentManagementSystem.dto.response.StudentResponseDTO;
 import com.Arshad.StudentManagementSystem.entity.Student;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface StudentService {
 
-    Student addStudent(Student s);
+    StudentResponseDTO addStudent(StudentRequestDTO request);
 
     List<Student> getStudents();
 
