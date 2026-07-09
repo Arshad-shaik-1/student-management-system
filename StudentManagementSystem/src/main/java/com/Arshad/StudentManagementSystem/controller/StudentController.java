@@ -19,28 +19,33 @@ public class StudentController {
     public StudentController(StudentService service){
         this.service = service;
     }
+
     @PostMapping
     public ResponseEntity<StudentResponseDTO> addStudent(
             @Valid @RequestBody StudentRequestDTO request){
         StudentResponseDTO response = service.addStudent(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+
     @GetMapping
-    public List<Student> getStudents(){
+    public List<StudentResponseDTO> getStudents(){
         return service.getStudents();
     }
+
+
     @GetMapping("/{id}")
-    public Student getStudent(@PathVariable Long id){
+    public StudentResponseDTO getStudent(@PathVariable Long id){
         return service.getStudent(id);
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent( @PathVariable Long id , @Valid @RequestBody Student student){
+    public StudentResponseDTO updateStudent( @PathVariable Long id , @Valid @RequestBody StudentRequestDTO student){
         return service.updateStudent(id , student);
     }
 
     @DeleteMapping("/{id}")
-    public Student deleteStudent(@PathVariable Long id){
+    public StudentResponseDTO deleteStudent(@PathVariable Long id){
         return service.deleteStudent(id);
     }
 }

@@ -40,30 +40,58 @@ public  class StudentServiceImpl implements StudentService {
         return response;
     }
     @Override
-    public List<Student> getStudents(){
-     return repo.findAll();
+    public List<StudentResponseDTO> getStudents(){
+        List<Student> list = repo.findAll();
+        return list.stream()
+                .map( s ->{
+                    StudentResponseDTO dto = new StudentResponseDTO();
+                    dto.setName(s.getName());
+                    dto.setDepartment(s.getDepartment());
+                    dto.setAge(s.getAge());
+                    dto.setEmail(s.getEmail());
+                    dto.setId(s.getId());
+                    return dto;
+                }).toList();
     }
     @Override
-    public Student getStudent(Long id){
-        return repo.findById(id)
-                .orElseThrow(
-                        () -> new StudentNotFoundException("No Student found with id "+id));
+    public StudentResponseDTO getStudent(Long id){
+        Student s = repo.findById(id).orElseThrow( () ->  new StudentNotFoundException("Student not found"));
+        StudentResponseDTO response = new StudentResponseDTO();
+        response.setId(s.getId());
+        response.setName(s.getName());
+        response.setAge(s.getAge());
+        response.setEmail(s.getEmail());
+        response.setDepartment(s.getDepartment());
+        return response;
     }
 
     @Override
-    public Student updateStudent(Long id , Student student){
-        Student existing = repo.findById(id).orElseThrow();
+    public StudentResponseDTO updateStudent(Long id , StudentRequestDTO student){
+        Student existing = repo.findById(id).orElseThrow( () -> new StudentNotFoundException("No student found to update with id "+id));
         existing.setName(student.getName());
         existing.setAge(student.getAge());
         existing.setEmail(student.getEmail());
         existing.setDepartment(student.getDepartment());
-        return repo.save(existing);
+        Student saved = repo.save(existing);
+        StudentResponseDTO response = new StudentResponseDTO();
+        response.setId(saved.getId());
+        response.setAge(saved.getAge());
+        response.setName(saved.getName());
+        response.setEmail(saved.getEmail());
+        response.setDepartment(saved.getDepartment());
+        return response;
     }
     @Override
-    public Student deleteStudent(Long id){
-        Student del = repo.findById(id).orElseThrow();
+    public StudentResponseDTO deleteStudent(Long id){
+        Student del = repo.findById(id).orElseThrow( () -> new StudentNotFoundException("No student found with id" +id +" to delete."));
         repo.deleteById(id);
-        return del;
+        StudentResponseDTO response = new StudentResponseDTO();
+        response.setId(del.getId());
+        response.setName(del.getName());
+        response.setAge(del.getAge());
+        response.setDepartment(del.getDepartment());
+        response.setEmail(del.getEmail());
+        return response;
     }
 
 }

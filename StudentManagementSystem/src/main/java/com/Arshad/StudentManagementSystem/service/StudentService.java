@@ -12,11 +12,11 @@ public interface StudentService {
 
     StudentResponseDTO addStudent(StudentRequestDTO request);
 
-    List<Student> getStudents();
+    List<StudentResponseDTO> getStudents();
 
-    Student getStudent(Long id );
+    StudentResponseDTO getStudent(Long id );
 
-    Student updateStudent(Long id ,Student student);
+    StudentResponseDTO updateStudent(Long id , StudentRequestDTO student);
 
-    Student deleteStudent(Long id);
+    StudentResponseDTO deleteStudent(Long id);
 }
