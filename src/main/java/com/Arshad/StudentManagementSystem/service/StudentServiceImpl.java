@@ -5,11 +5,14 @@ import com.Arshad.StudentManagementSystem.dto.request.StudentRequestDTO;
 import com.Arshad.StudentManagementSystem.dto.response.StudentResponseDTO;
 import com.Arshad.StudentManagementSystem.entity.Student;
 import com.Arshad.StudentManagementSystem.repository.StudentRepository;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+//import java.awt.print.Pageable;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public  class StudentServiceImpl implements StudentService {
@@ -94,4 +97,9 @@ public  class StudentServiceImpl implements StudentService {
         return response;
     }
 
+    @Override
+    public Page<Student> getStudents(int page , int size , String sortBy){
+        Pageable p = PageRequest.of(page , size , Sort.by(sortBy));
+        return repo.findAll(p);
+    }
 }

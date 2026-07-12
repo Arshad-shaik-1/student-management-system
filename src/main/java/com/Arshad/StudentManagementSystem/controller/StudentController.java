@@ -5,6 +5,7 @@ import com.Arshad.StudentManagementSystem.dto.response.StudentResponseDTO;
 import com.Arshad.StudentManagementSystem.entity.Student;
 import com.Arshad.StudentManagementSystem.service.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +29,10 @@ public class StudentController {
     }
 
 
-    @GetMapping
-    public List<StudentResponseDTO> getStudents(){
-        return service.getStudents();
-    }
+//    @GetMapping
+//    public List<StudentResponseDTO> getStudents(){
+//        return service.getStudents();
+//    }
 
 
     @GetMapping("/{id}")
@@ -47,5 +48,12 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public StudentResponseDTO deleteStudent(@PathVariable Long id){
         return service.deleteStudent(id);
+    }
+
+    @GetMapping()
+    public Page<Student> getStudents(@RequestParam(defaultValue = "0") int page ,
+                                     @RequestParam(defaultValue = "10") int size ,
+                                     @RequestParam(defaultValue = "id") String sortBy){
+        return service.getStudents(page , size , sortBy);
     }
 }
