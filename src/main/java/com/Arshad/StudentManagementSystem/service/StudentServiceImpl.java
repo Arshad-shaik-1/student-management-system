@@ -105,7 +105,7 @@ public  class StudentServiceImpl implements StudentService {
     @Override
     public Page<Student> searchByName(String name , int page , int size){
         Pageable p = PageRequest.of(page , size);
-        return repo.findByName(name , p);
+        return repo.findByNameContainingIgnoreCase(name , p);
     }
 
     @Override
@@ -117,11 +117,11 @@ public  class StudentServiceImpl implements StudentService {
     @Override
     public Page<Student> searchByDept(String department , int page , int size){
         Pageable p = PageRequest.of(page , size);
-        return repo.findByDepartment(department , p);
+        return repo.findByDepartmentContainingIgnoreCase(department , p);
     }
 
     public Page<Student> searchByEmail(String email , int page ,int size){
         Pageable p = PageRequest.of(page , size);
-        return repo.findByEmail(email , p);
+        return repo.findByEmailContainingIgnoreCase(email , p);
     }
 }

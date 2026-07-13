@@ -9,9 +9,9 @@ import org.springframework.data.domain.Pageable;
 
 @Repository
 public interface StudentRepository  extends JpaRepository<Student, Long> {
-    Page<Student> findByName(String name , Pageable p);
+    Page<Student> findByNameContainingIgnoreCase(String name , Pageable p);
     Page<Student> findByAge(int age , Pageable p);
-    Page<Student> findByDepartment(String dept , Pageable p);
-    Page<Student> findByEmail(String email , Pageable p);
+    Page<Student> findByDepartmentContainingIgnoreCase(String dept , Pageable p);
+    Page<Student> findByEmailContainingIgnoreCase(String email , Pageable p);
 
 }

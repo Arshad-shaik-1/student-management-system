@@ -71,8 +71,8 @@ public class StudentController {
     }
 
     @GetMapping("/search/department")
-    public Page<Student> searchByDept(@RequestParam String dept , @RequestParam(defaultValue = "0") int page , @RequestParam(defaultValue = "10") int size){
-        return service.searchByDept(dept, page , size);
+    public Page<Student> searchByDept(@RequestParam String department , @RequestParam(defaultValue = "0") int page , @RequestParam(defaultValue = "10") int size){
+        return service.searchByDept(department, page , size);
     }
 
     @GetMapping("/search/Email")
