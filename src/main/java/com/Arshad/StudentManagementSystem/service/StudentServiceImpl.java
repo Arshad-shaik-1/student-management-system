@@ -102,4 +102,26 @@ public  class StudentServiceImpl implements StudentService {
         Pageable p = PageRequest.of(page , size , Sort.by(sortBy));
         return repo.findAll(p);
     }
+    @Override
+    public Page<Student> searchByName(String name , int page , int size){
+        Pageable p = PageRequest.of(page , size);
+        return repo.findByName(name , p);
+    }
+
+    @Override
+    public Page<Student> searchByAge(int age , int page , int size){
+        Pageable p = PageRequest.of(page , size);
+        return repo.findByAge(age, p);
+    }
+
+    @Override
+    public Page<Student> searchByDept(String department , int page , int size){
+        Pageable p = PageRequest.of(page , size);
+        return repo.findByDepartment(department , p);
+    }
+
+    public Page<Student> searchByEmail(String email , int page ,int size){
+        Pageable p = PageRequest.of(page , size);
+        return repo.findByEmail(email , p);
+    }
 }

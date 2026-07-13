@@ -22,4 +22,12 @@ public interface StudentService {
     StudentResponseDTO deleteStudent(Long id);
 
     Page<Student> getStudents(int page , int size , String sortBy);
+
+    Page<Student> searchByName(String name , int page , int size);
+
+    Page<Student> searchByAge(int age , int page , int size);
+
+    Page<Student> searchByDept(String dept , int page , int size);
+
+    Page<Student> searchByEmail(String email, int page, int size);
 }
